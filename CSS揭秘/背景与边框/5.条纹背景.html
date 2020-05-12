@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>条纹背景</title>
+  <style>
+    body {
+      text-align: center;
+    }
+    div {
+      width: 200px;
+      height: 200px;
+      margin: 20px auto;
+      border: 1px dashed #000;
+    }
+    .horizontal {
+      background: linear-gradient(#0ff 50%, #fb3 50%);
+      background-size: 100% 20%;
+    }
+    .vertical {
+      background: linear-gradient(to right, #0ff 50%, #fb3 50%);
+      background-size: 20% 100%;
+    }
+    /* 方案一 */
+    /* .oblique {
+      background: linear-gradient(45deg, #0ff 25%, #fb3 0, #fb3 50%, #0ff 0, #0ff 75%, #fb3 0);
+      background-size: 25% 25%;
+    } */
+    /* 方案二 */
+    .oblique {
+      background: repeating-linear-gradient(45deg, #0ff 0, #0ff 10%, #fb3 0, #fb3 20%);
+    }
+    /* 方案三 */
+    /* .oblique {
+      background: #0ff;
+      background-image: repeating-linear-gradient(45deg, 
+      hsla(0, 0%, 100%, .6), 
+      hsla(0, 0%, 100%, .6) 10%, 
+      transparent 0, transparent 20%);
+    } */
+
+    /* 总结：
+      任何角度的条纹背景都可以这样写：
+      background: repeating-linear-gradient(45deg, #0ff 0, #0ff 10%, #fb3 0, #fb3 20%);
+      修改度数即可 —— 0-水平 90-垂直
+     */
+  </style>
+</head>
+<body>
+  水平条纹：<div class="horizontal"></div>
+  垂直条纹：<div class="vertical"></div>
+  斜向条纹：<div class="oblique"></div>
+</body>
+</html>

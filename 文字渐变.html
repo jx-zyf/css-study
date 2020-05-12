@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>文字渐变</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      width: 200px;
+      margin: 50px auto;
+      border: 1px solid #ccc;
+      padding: 20px;
+      font-size: 48px;
+      color: transparent;
+      letter-spacing: 30px;
+      background-clip: text;
+      -webkit-background-clip: text;
+      background-color: #ccc;
+      background-image: linear-gradient(to right, rgba(76, 147, 254, 1), rgba(76, 147, 254, 1));
+      background-repeat: no-repeat;
+      background-size: 100%;
+      animation: gradient 3s linear 1s infinite;
+    }
+
+    @keyframes gradient {
+      from {
+        background-size: 0;
+      }
+      to {
+        background-size: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">1234</div>
+</body>
+</html>

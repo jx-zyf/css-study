@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>混合-多行多列</title>
+  <style>
+    html, body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      height: 100%;
+      /* height: 200vh; */
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    header, footer {
+      height: 100px;
+      display: flex;
+    }
+
+    section {
+      flex: 1;
+      display: flex;
+    }
+
+    header>div, section>div, footer>div {
+      width: 100px;
+      border: 1px solid red;
+    }
+
+    header>div:nth-child(2), section>div:nth-child(2), footer>div:nth-child(2) {
+      flex: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div>1</div>
+      <div>2</div>
+      <div>3</div>
+    </header>
+    <section>
+      <div>4</div>
+      <div>5</div>
+      <div>6</div>
+    </section>
+    <footer>
+      <div>7</div>
+      <div>8</div>
+      <div>9</div>
+    </footer>
+  </div>
+</body>
+</html>

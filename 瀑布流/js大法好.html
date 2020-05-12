@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js 大法</title>
+    <style>
+      .container {
+        min-height: 100vh;
+        position: relative;
+      }
+
+      .container>img {
+        position: absolute;
+        width: 200px;
+        margin: 10px;
+        transition: all .6s;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <img src="../images/avatar.jpg" alt="">
+      <img src="../images/bg1.jpg" alt="">
+      <img src="../images/bg2.png" alt="">
+      <img src="../images/zzf001.jpg" alt="">
+      <img src="../images/zzf002.jpg" alt="">
+      <img src="../images/zzf003.jpg" alt="">
+      <img src="../images/zzf004.jpg" alt="">
+      <img src="../images/zzf005.jpg" alt="">
+      <img src="../images/avatar.jpg" alt="">
+      <img src="../images/bg1.jpg" alt="">
+      <img src="../images/bg2.png" alt="">
+      <img src="../images/zzf001.jpg" alt="">
+      <img src="../images/zzf002.jpg" alt="">
+      <img src="../images/zzf003.jpg" alt="">
+      <img src="../images/zzf004.jpg" alt="">
+      <img src="../images/zzf005.jpg" alt="">
+      <img src="../images/avatar.jpg" alt="">
+      <img src="../images/bg1.jpg" alt="">
+      <img src="../images/bg2.png" alt="">
+      <img src="../images/zzf001.jpg" alt="">
+      <img src="../images/zzf002.jpg" alt="">
+      <img src="../images/zzf003.jpg" alt="">
+      <img src="../images/zzf004.jpg" alt="">
+      <img src="../images/zzf005.jpg" alt="">
+    </div>
+
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <script>
+      // 节流
+      function throttle(fn, time = 1000) {
+        let canRun = true;
+        return function () {
+          if (!canRun) return;
+          canRun = false;
+          setTimeout(() => {
+            fn.apply(this, arguments);
+            canRun = true;
+          }, time)
+        }
+      }
+
+      function myWater() {
+        let colCount;   // 列数
+        let colHeights = [];  // 每列高度
+        const boxWidth = $('.container').outerWidth(true);
+        const imgWidth = $('.container>img').outerWidth(true);   // 图片宽度，包含margin
+
+        colCount = Math.floor(boxWidth / imgWidth);   // 计算出列数
+        for (let i = 0; i < colCount; i++) {
+          // 初始化为0
+          colHeights.push(0);
+        }
+
+        $('.container>img').each(function () {
+          let minHeight = colHeights[0];  // 最小的高度
+          let minHeightIndex = 0;  // 最小高度的下标
+          for (let i = 0; i < colCount; i++) {
+            if (colHeights[i] < minHeight) {
+              minHeight = colHeights[i];
+              minHeightIndex = i;
+            }
+          }
+
+          $(this).css({
+            left: minHeightIndex * imgWidth,
+            top: minHeight
+          })
+          colHeights[minHeightIndex] += $(this).outerHeight(true);
+        })
+      }
+
+      myWater();
+      $(window).on('load', function () {
+        myWater();
+      })
+
+      $(window).on('resize', throttle(myWater, 300))
+    </script>
+  </body>
+
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>table-图片完全居中</title>
+    <style>
+      .box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .img-out-box {
+        display: table;
+        border: 1px solid #ccc;
+        margin: 16px;
+      }
+
+      .img-box {
+        width: 25vw;
+        height: 25vw;
+        display: table-cell;
+        text-align: center;
+        vertical-align: middle;
+      }
+
+      .img-box>img {
+        max-width: 88%;
+        max-height: 88%;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="box">
+      <div class="img-out-box">
+        <div class="img-box"><img src="../images/avatar.jpg" alt=""></div>
+      </div>
+      <div class="img-out-box">
+        <div class="img-box"><img src="../images/bg1.jpg" alt=""></div>
+      </div>
+      <div class="img-out-box">
+        <div class="img-box"><img src="../images/zzf001.jpg" alt=""></div>
+      </div>
+    </div>
+  </body>
+
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>CSS 表单验证</title>
+  <style>
+    input:valid~button {
+      pointer-events: all;
+      cursor: pointer;
+    }
+    input:valid~button::after {
+      content: '提交';
+    }
+    
+    input:invalid {
+      border-color: red;
+    }
+    input:invalid~button {
+      pointer-events: none;
+      cursor: not-allowed;
+    }
+    input:invalid~button::after {
+      content: '请检查格式';
+    }
+  </style>
+</head>
+<body>
+  <section>
+    <input type="text" placeholder="请输入手机号" required pattern="^1[3456789]\d{9}$">
+    <input type="text" placeholder="请输入验证码" required pattern="\d{4,6}">
+    <button type="submit"></button>
+  </section>
+</body>
+</html>

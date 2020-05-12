@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>flex-图片完全居中</title>
+    <style>
+      .box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .img-box {
+        width: 25vw;
+        height: 25vw;
+        border: 1px solid #ccc;
+        margin: 16px;
+        display: flex;
+      }
+
+      .img-box>img {
+        margin: auto;
+        max-width: 88%;
+        max-height: 88%;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="box">
+      <div class="img-box"><img src="../images/avatar.jpg" alt=""></div>
+      <div class="img-box"><img src="../images/bg1.jpg" alt=""></div>
+      <div class="img-box"><img src="../images/zzf001.jpg" alt=""></div>
+    </div>
+  </body>
+
+</html>

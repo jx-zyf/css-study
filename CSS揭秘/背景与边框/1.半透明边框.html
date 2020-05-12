@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>半透明边框</title>
+  <style>
+    html, body {
+      width: 100%;
+      height: 100%;
+      background: #0ff;
+    }
+    div {
+      width: 200px;
+      margin: 50px auto;
+      border: 1rem solid hsla(0, 0%, 100%, .5);
+      background: #fff;
+      padding: .5rem .2rem;
+      /* background-clip: padding-box; */
+    }
+  </style>
+</head>
+<body>
+  <div>这是内容</div>
+</body>
+</html>
