@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>唤起微信和QQ</title>
+</head>
+<body>
+  <button id="wx">微信</button>
+  <button id="qq">QQ</button>
+
+  <script>
+    const wx = document.querySelector('#wx');
+    const qq = document.querySelector('#qq');
+    wx.onclick = () => {
+      window.location.href = "weixin://";
+    }
+    qq.onclick = () => {
+      window.location.href="mqqwpa://im/chat?chat_type=wpa&uin=1571016217&version=1&src_type=web&web_src=oicqzone.com";
+    }
+  </script>
+</body>
+</html>
