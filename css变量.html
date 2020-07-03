@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css 变量</title>
+    <style>
+      html,
+      body {
+        height: 100%;
+        overflow: hidden;
+        text-align: center;
+        padding: 0;
+        margin: 0;
+        --primaryColor: #12cad6;
+      }
+
+      /* loading */
+      .loading {
+        width: 300px;
+        height: 30px;
+        background: #fafafa;
+        margin: 24px auto;
+      }
+
+      .loading:after {
+        content: counter(progress) '%\2002';
+        counter-reset: progress var(--percent);
+        width: calc(1% * var(--percent));
+        height: 100%;
+        display: block;
+        background: var(--primaryColor);
+        line-height: 30px;
+        text-align: right;
+        transition: width .1s ease;
+      }
+
+      /* 按钮圈圈效果 */
+      .btn {
+        border-radius: 5px;
+        border: none;
+        outline: none;
+        padding: 12px 16px;
+        cursor: pointer;
+        margin-right: 12px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .primary {
+        border: 1px solid var(--primaryColor);
+        background: var(--primaryColor);
+        color: #fff;
+      }
+
+      .dashed {
+        background: #fff;
+        border: 1px dashed #000;
+        color: #000;
+        transition: all .4s ease;
+      }
+
+      .dashed:hover {
+        border: 1px dashed var(--primaryColor);
+        background: #fff;
+        color: var(--primaryColor);
+      }
+
+      .btn:not([disabled]):active::after {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: .3;
+        transition: 0s;
+      }
+
+      .btn::after {
+        content: "";
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: calc(var(--offsetx, 0) * 1px);
+        top: calc(var(--offsety, 0) * 1px);
+        pointer-events: none;
+        background: radial-gradient(circle, currentColor 10%, transparent 10.01%) no-repeat 50%;
+        transform: translate(-50%, -50%) scale(10);
+        opacity: 0;
+        transition: transform .3s, opacity .8s;
+      }
+
+      .dashed::after {
+        background: radial-gradient(circle, var(--primaryColor) 10%, transparent 10.01%) no-repeat 50%;
+      }
+
+      /* 点击页面任意地方 弹出 linxunzyf */
+      body::after {
+        content: "linxunzyf";
+        position: absolute;
+        left: calc(var(--clientx, -999) * 1px);
+        top: calc(var(--clienty, -999) * 1px);
+        transform: translate(-50%, calc(-100% - 20px));
+        opacity: 0;
+        transition: transform .5s ease-in-out, opacity .8s ease-in-out;
+      }
+
+      body:active::after {
+        left: -999px;
+        top: -999px;
+        transform: translate(-50%, -100%);
+        opacity: 0.5;
+        transition: 0s;
+      }
+
+      /* 按钮下划线划来划去 */
+      .tab-box {
+        max-width: 360px;
+        display: flex;
+        justify-content: space-between;
+        margin: 30px auto;
+        border-bottom: 1px solid #666;
+        position: relative;
+      }
+
+      .tab-box[style]::after {
+        content: '';
+      }
+
+      .tab-box::after {
+        display: block;
+        position: absolute;
+        width: calc(var(--target-width, 0) * 1px);
+        left: calc(var(--target-left, -999) * 1px);
+        bottom: -2px;
+        border-bottom: 4px solid var(--primaryColor);
+        transition: width .3s, left .3s;
+      }
+
+      .tab {
+        text-decoration: none;
+        padding: 12px 16px;
+        color: #333;
+        font-size: 16px;
+      }
+
+      /* 页脚 */
+      .footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        height: 60px;
+        background: #eee;
+      }
+
+      .footer a {
+        line-height: 60px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <section>
+      <h2>1. css 进度条</h2>
+      <div class="loading-box">
+        <div class="loading" style="--percent: 40"></div>
+        <div class="loading" style="--percent: 60"></div>
+        <div class="loading" style="--percent: 80"></div>
+        <div class="loading" id="loading" style="--percent: 0"></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>2. 按钮点击圈圈效果</h2>
+      <button class="btn primary">primary</button>
+      <button class="btn dashed">dashed</button>
+    </section>
+
+    <section>
+      <h2>3. 点击页面任意地方 弹出 linxunzyf</h2>
+    </section>
+
+    <section>
+      <h2>4. 按钮下划线划来划去</h2>
+      <div class="tab-box">
+        <a href="javascript:;" class="tab">tab1</a>
+        <a href="javascript:;" class="tab">tab2</a>
+        <a href="javascript:;" class="tab">tab3</a>
+        <a href="javascript:;" class="tab">tab4</a>
+      </div>
+    </section>
+
+    <div class="footer">
+      <a href='https://www.zhangxinxu.com/wordpress/2020/07/css-var-improve-components/' target="_blank">
+        参考【CSS变量对JS交互组件开发带来的提升与变革】
+      </a>
+    </div>
+
+    <script>
+      /* 工具代码 **/
+      document.addEventListener('mousedown', function (event) {
+        var target = event.target;
+        var body = document.body;
+        var html = document.documentElement;
+
+        // 设置自定义属性值
+        body.style.setProperty('--pagex', event.pageX);
+        body.style.setProperty('--pagey', event.pageY);
+
+        html.style.setProperty('--clientx', event.clientX);
+        html.style.setProperty('--clienty', event.clientY);
+        html.style.setProperty('--scrolly', window.pageYOffset);
+
+        target.style.setProperty('--offsetx', event.offsetX);
+        target.style.setProperty('--offsety', event.offsetY);
+        target.parentElement.style.setProperty('--target-width', target.clientWidth);
+        target.parentElement.style.setProperty('--target-height', target.clientHeight);
+        target.parentElement.style.setProperty('--target-left', target.offsetLeft);
+        target.parentElement.style.setProperty('--target-top', target.offsetTop);
+      });
+      /* 工具代码 **/
+
+      var loading = document.querySelector('#loading');
+      var timer = setInterval(function () {
+        var lastPercent = ~~loading.style.getPropertyValue('--percent');
+        if (lastPercent < 100) {
+          loading.style.setProperty('--percent', lastPercent + 1);
+        } else {
+          clearInterval(timer);
+        }
+      }, 100)
+    </script>
+  </body>
+
+</html>
